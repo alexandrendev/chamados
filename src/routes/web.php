@@ -5,5 +5,5 @@ use App\Http\Controllers\TarefaController;
 use App\Http\Controllers\CategoriaController;
 
 Route::get('/', function () {
-    return redirect()->route('tarefas.index');
+    return view('welcome');
 });
