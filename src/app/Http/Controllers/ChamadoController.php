@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreChamadoRequest;
 use App\Http\Requests\UpdateChamadoRequest;
+use App\Models\Categoria;
 use App\Models\Chamado;
 use App\Models\Tecnico;
 use Illuminate\Http\RedirectResponse;
@@ -14,7 +15,7 @@ class ChamadoController extends Controller
     public function index(): View
     {
         $chamados = Chamado::query()
-            ->with('tecnico:id,nome')
+            ->with(['tecnico:id,nome', 'categoria:id,nome'])
             ->latest('id')
             ->get();
 
@@ -24,8 +25,9 @@ class ChamadoController extends Controller
     public function create(): View
     {
         $tecnicos = Tecnico::query()->where('ativo', true)->orderBy('nome')->get(['id', 'nome']);
+        $categorias = Categoria::query()->orderBy('nome')->get(['id', 'nome']);
 
-        return view('chamados.create', compact('tecnicos'));
+        return view('chamados.create', compact('tecnicos', 'categorias'));
     }
 
     public function store(StoreChamadoRequest $request): RedirectResponse
@@ -39,7 +41,7 @@ class ChamadoController extends Controller
 
     public function show(Chamado $chamado): View
     {
-        $chamado->load('tecnico:id,nome');
+        $chamado->load(['tecnico:id,nome', 'categoria:id,nome']);
 
         return view('chamados.show', compact('chamado'));
     }
@@ -47,8 +49,9 @@ class ChamadoController extends Controller
     public function edit(Chamado $chamado): View
     {
         $tecnicos = Tecnico::query()->where('ativo', true)->orderBy('nome')->get(['id', 'nome']);
+        $categorias = Categoria::query()->orderBy('nome')->get(['id', 'nome']);
 
-        return view('chamados.edit', compact('chamado', 'tecnicos'));
+        return view('chamados.edit', compact('chamado', 'tecnicos', 'categorias'));
     }
 
     public function update(UpdateChamadoRequest $request, Chamado $chamado): RedirectResponse

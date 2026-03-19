@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Tecnico extends Model
 {
@@ -22,5 +23,10 @@ class Tecnico extends Model
         return [
             'ativo' => 'boolean',
         ];
+    }
+
+    public function chamados(): HasMany
+    {
+        return $this->hasMany(Chamado::class);
     }
 }

@@ -7,7 +7,7 @@ use App\Http\Controllers\TarefaController;
 use App\Http\Controllers\CategoriaController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts.app');
 });
 
 Route::resource('categorias', CategoriaController::class);

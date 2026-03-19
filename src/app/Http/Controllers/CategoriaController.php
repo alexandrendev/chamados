@@ -11,7 +11,9 @@ class CategoriaController extends Controller
 {
     public function index(): View
     {
-        $categorias = Categoria::query()->orderBy('id')->get();
+        $categorias = Categoria::query()
+            ->orderBy('nome')
+            ->get();
 
         return view('categorias.index', compact('categorias'));
     }
@@ -28,7 +30,7 @@ class CategoriaController extends Controller
             'sla_horas' => ['required', 'integer', 'min:0'],
         ]);
 
-        Categoria::create($dados);
+        Categoria::query()->create($dados);
 
         return redirect()
             ->route('categorias.index')
@@ -55,7 +57,7 @@ class CategoriaController extends Controller
         $categoria->update($dados);
 
         return redirect()
-            ->route('categorias.show', $categoria)
+            ->route('categorias.index')
             ->with('ok', 'Categoria atualizada com sucesso.');
     }
 
