@@ -20,7 +20,7 @@ class UpdateChamadoRequest extends FormRequest
             'status' => ['required', 'in:aberto,em_atendimento,resolvido,fechado'],
             'data_abertura' => ['required', 'date'],
             'servico_id' => ['nullable', 'integer'],
-            'categoria_id' => ['nullable', 'integer'],
+            'categoria_id' => ['required', 'integer', 'exists:categorias,id'],
             'tecnico_id' => ['nullable', 'integer', 'exists:tecnicos,id'],
         ];
     }

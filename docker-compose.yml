@@ -4,8 +4,8 @@ services:
       context: .
       dockerfile: docker/Dockerfile
       args:
-        UID: 1001
-        GID: 1001
+        UID: 1000
+        GID: 1000
     working_dir: /var/www/html
     volumes:
       - ./src:/var/www/html
@@ -46,8 +46,9 @@ services:
     working_dir: /var/www/html
     volumes:
       - ./src:/var/www/html
+    command: tail -f /dev/null
+    tty: true
     ports:
       - "5173:5173"
-    profiles: ["tools"]
 volumes:
   dbdata:

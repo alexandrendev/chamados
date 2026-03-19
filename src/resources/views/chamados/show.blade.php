@@ -11,7 +11,7 @@
     <div><span>Status:</span> {{ $chamado->status }}</div>
     <div><span>Data de abertura:</span> {{ optional($chamado->data_abertura)->format('d/m/Y') }}</div>
     <div><span>Servico ID:</span> {{ $chamado->servico_id }}</div>
-    <div><span>Categoria ID:</span> {{ $chamado->categoria_id }}</div>
+    <div><span>Categoria:</span> {{ $chamado->categoria?->nome ?? 'Sem categoria' }}</div>
     <div><span>Tecnico:</span> {{ $chamado->tecnico?->nome ?? 'Nao atribuido' }}</div>
 
     <div>

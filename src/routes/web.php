@@ -7,8 +7,9 @@ use App\Http\Controllers\TarefaController;
 use App\Http\Controllers\CategoriaController;
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('home');
+})->name('home');
 
+Route::resource('categorias', CategoriaController::class);
 Route::resource('chamados', ChamadoController::class);
 Route::resource('tecnicos', TecnicoController::class);

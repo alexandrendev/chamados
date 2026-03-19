@@ -108,14 +108,19 @@
     </div>
 
     <div class="md:col-span-2">
-        <label class="mb-1 block text-sm font-medium text-slate-700">Categoria ID</label>
-        <input
-            type="number"
+        <label class="mb-1 block text-sm font-medium text-slate-700">Categoria</label>
+        <select
             name="categoria_id"
-            value="{{ old('categoria_id', $chamado->categoria_id ?? '') }}"
-            min="1"
-            class="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none ring-slate-300 transition focus:border-slate-500 focus:ring"
+            required
+            class="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm outline-none ring-slate-300 transition focus:border-slate-500 focus:ring"
         >
+            <option value="" disabled @selected((string) old('categoria_id', $chamado->categoria_id ?? '') === '')>Selecione uma categoria</option>
+            @foreach(($categorias ?? collect()) as $categoria)
+                <option value="{{ $categoria->id }}" @selected((string) old('categoria_id', $chamado->categoria_id ?? '') === (string) $categoria->id)>
+                    {{ $categoria->nome }}
+                </option>
+            @endforeach
+        </select>
         @error('categoria_id') <div class="mt-1 text-sm text-red-600">{{ $message }}</div> @enderror
     </div>
 </div>

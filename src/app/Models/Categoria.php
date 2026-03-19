@@ -6,22 +6,22 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Tecnico extends Model
+class Categoria extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'nome',
-        'email',
-        'telefone',
-        'especialidade',
-        'ativo',
+        'sla_horas',
     ];
 
+    /**
+     * @return array<string, string>
+     */
     protected function casts(): array
     {
         return [
-            'ativo' => 'boolean',
+            'sla_horas' => 'integer',
         ];
     }
 
