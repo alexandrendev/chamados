@@ -46,10 +46,8 @@ services:
     working_dir: /var/www/html
     volumes:
       - ./src:/var/www/html
-    command: tail -f /dev/null
-    tty: true
     ports:
       - "5173:5173"
-    # profiles: ["tools"]
+    profiles: ["tools"]
 volumes:
   dbdata:
