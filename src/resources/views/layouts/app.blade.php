@@ -10,20 +10,14 @@
 
 <body class="min-h-screen bg-slate-50 text-slate-800">
     <div class="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
-        <header class="mb-8 flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 pb-4">
-            <h1 class="text-2xl font-semibold tracking-tight">@yield('lista_de', 'Lista de Tarefas')</h1>
-            <div class="flex flex-wrap items-center gap-2">
+        <header class="mb-8 border-b border-slate-200 pb-4">
+            <div class="flex flex-wrap items-center justify-between gap-4">
+                <h1 class="text-2xl font-semibold tracking-tight">@yield('lista_de', 'Painel')</h1>
                 <a
-                    href="{{ route('categorias.store') }}"
-                    class="inline-flex items-center rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100"
+                    href="{{ route('home') }}"
+                    class="inline-flex items-center rounded-md px-3 py-1.5 text-sm font-medium transition {{ request()->routeIs('home') ? 'bg-slate-900 text-white' : 'border border-slate-300 bg-white text-slate-700 hover:bg-slate-100' }}"
                 >
-                    Cadastrar categoria
-                </a>
-                <a
-                    href="{{ route('chamados.index') }}"
-                    class="inline-flex items-center rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-700"
-                >
-                    Ir para chamados
+                    Home
                 </a>
             </div>
         </header>
